@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Rose of Sharon Think Tank</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--green:#2F5D1E;--leaf:#5C9A2E;--gold:#E8B83A;--goldT:#B37D0E;--coral:#D85A30;--cream:#F6F3E8;--line:#E4E0CF;--ink:#1F2A14;--muted:#7A7560;--soft:#5E6B52}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Nunito,"Segoe UI",Arial,sans-serif;background:var(--cream);color:var(--ink);min-height:100vh}
+button,input,select,textarea{font-family:inherit}
+.page{max-width:1340px;margin:0 auto;padding:22px}
+.top{background:var(--green);color:#fff;border-radius:20px;padding:18px 26px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.top h1{font-size:30px;font-weight:900;line-height:1.15}
+.top p{color:#F3D98B;font-size:15px;margin-top:3px}
+.topbtns{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.pour{background:var(--gold);color:#2B1F00;font-weight:900;padding:13px 22px;border-radius:999px;font-size:16px;border:0;cursor:pointer;transition:transform .15s}
+.pour:hover{transform:scale(1.04)}
+.lock{background:rgba(255,255,255,.12);color:#fff;border:0;padding:12px 16px;border-radius:999px;font-weight:700;font-size:14px;cursor:pointer}
+.lock:hover{background:rgba(255,255,255,.22)}
+.grid{display:grid;grid-template-columns:minmax(0,660px) minmax(0,1fr);gap:22px;margin-top:20px}
+.panel{background:#fff;border-radius:22px;padding:18px;border:1px solid var(--line)}
+.ph{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.ph h2{font-size:24px;font-weight:900;color:var(--green)}
+.ph span{font-size:13px;color:var(--muted);font-weight:700}
+#tank{width:100%;height:auto;display:block}
+#tank text{font-family:Nunito,"Segoe UI",Arial,sans-serif}
+.bub{cursor:pointer;transform-box:fill-box;transform-origin:center;animation:bob 4.5s ease-in-out infinite}
+.bub:hover circle.b{stroke-width:5}
+.bub.new{animation:plop 1.4s ease-out 1,bob 4.5s ease-in-out 1.4s infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes plop{0%{transform:translateY(-420px) scale(.4);opacity:0}60%{transform:translateY(10px) scale(1.08);opacity:1}100%{transform:translateY(0) scale(1)}}
+.rise{transform-box:fill-box;animation:rise linear infinite}
+@keyframes rise{0%{transform:translateY(0);opacity:0}10%{opacity:.9}90%{opacity:.7}100%{transform:translateY(-500px);opacity:0}}
+.wave{animation:wave 7s ease-in-out infinite alternate}
+@keyframes wave{from{transform:translateX(0)}to{transform:translateX(-60px)}}
+.drop{animation:drop 3.2s ease-in infinite}
+@keyframes drop{0%{transform:translate(0,0);opacity:1}55%{transform:translate(-100px,30px);opacity:1}80%{transform:translate(-135px,95px);opacity:0}100%{transform:translate(-135px,95px);opacity:0}}
+.twinkle{animation:tw 2.4s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:1}50%{opacity:.25}}
+.spot{background:#FFF4D6;border:3px solid var(--gold);border-radius:18px;padding:16px 20px;margin-top:6px;display:flex;justify-content:space-between;align-items:center;gap:12px;cursor:pointer}
+.spot .k{font-size:16px;font-weight:800;color:#5A3D00}
+.spot .t{font-size:22px;font-weight:900;color:var(--green);margin:2px 0}
+.spot .m{font-size:13px;color:#7A5A10}
+.spot .e{font-size:46px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;font-size:12px;font-weight:700;color:var(--soft);margin:2px 0 10px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+.jrow{display:grid;grid-template-columns:150px minmax(0,1fr);position:relative}
+.jroad{position:relative}
+.segbox{position:absolute;top:44px;left:0;width:150px;height:100%;z-index:0}
+.segbox svg{width:100%;height:100%;display:block;overflow:visible}
+.here{position:absolute;width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;background:var(--gold);border:4px solid #fff;box-shadow:0 0 0 0 rgba(232,184,58,.7);animation:pulse 2s infinite;z-index:3}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(232,184,58,.7)}70%{box-shadow:0 0 0 16px rgba(232,184,58,0)}100%{box-shadow:0 0 0 0 rgba(232,184,58,0)}}
+.station{position:absolute;top:0;left:31px;width:88px;height:88px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;z-index:2;font-size:32px}
+.station svg{position:absolute;inset:0}
+.station span{position:relative}
+.station.kick{background:var(--green)}
+.station.kick.pulse{animation:pulse 2s infinite}
+.station.fin{background:var(--gold);border:6px solid #fff}
+.jcard{margin-bottom:34px;background:#fff;border:2px solid var(--line);border-radius:18px;padding:16px 20px;position:relative;z-index:1;cursor:pointer;transition:transform .15s}
+.jcard:hover{transform:translateX(3px)}
+.jcard.next{border:3px solid var(--leaf)}
+.jcard.kick{background:#EAF3DE;border-color:#EAF3DE;cursor:default}
+.jcard.kick:hover,.jcard.fin.nogoal:hover{transform:none}
+.jcard.fin{background:#FFF8E4;border:3px solid var(--gold)}
+.jcard.won{background:#F2F9EA;border:3px solid var(--leaf)}
+.jq{font-size:12px;font-weight:800;color:var(--muted);letter-spacing:.3px;text-transform:uppercase}
+.fin .jq{color:#8A5A00}
+.jt{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin:2px 0 8px}
+.jt b{font-size:21px;font-weight:900}
+.big{font-size:32px;font-weight:900;white-space:nowrap;line-height:1}
+.big small{font-size:14px;color:var(--muted);font-weight:700}
+.bar{height:14px;border-radius:7px;background:#E9EDE1;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:7px;transition:width 1.2s ease}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.chip{font-size:12px;font-weight:800;padding:4px 11px;border-radius:999px}
+.status{font-size:13px;font-weight:800;margin-top:10px}
+.dots{display:flex;gap:9px;align-items:center;margin-top:12px;flex-wrap:wrap}
+.dots i{width:20px;height:20px;border-radius:50%;background:#E9EDE1;display:inline-block}
+.dots i.on{background:var(--leaf)}
+.dots span{font-size:12px;font-weight:800;color:var(--muted);margin-left:6px}
+.icons{font-size:22px;letter-spacing:2px;margin-top:10px;line-height:1.3}
+.icons .off{opacity:.2}
+.more{display:none;margin-top:14px;border-top:2px solid #EFEBDD;padding-top:12px}
+.jcard.open .more{display:block}
+.lane{display:grid;grid-template-columns:100px 1fr 44px;gap:10px;align-items:center;font-size:13px;font-weight:700;margin-bottom:8px}
+.lane .bar{height:10px}
+.lane b{text-align:right}
+.ms{font-size:13px;margin:5px 0;display:flex;gap:8px}
+.ms.done{color:var(--muted);text-decoration:line-through}
+.toggle{font-size:12px;font-weight:800;color:var(--green);margin-top:10px}
+.modal{position:fixed;inset:0;background:rgba(20,30,12,.55);display:flex;align-items:center;justify-content:center;padding:18px;z-index:50}
+.modal[hidden]{display:none}
+.mbox{background:#fff;border-radius:22px;max-width:520px;width:100%;padding:24px;max-height:92vh;overflow:auto;animation:pop .25s ease-out}
+@keyframes pop{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
+.mbox h3{font-size:22px;font-weight:900;color:var(--green);margin-bottom:4px}
+.mbox .sub{font-size:14px;color:var(--soft);margin-bottom:14px}
+.f{margin-bottom:12px}
+.f label{display:block;font-size:12px;font-weight:800;color:var(--soft);margin-bottom:5px;text-transform:uppercase;letter-spacing:.3px}
+.f input[type=text],.f input[type=email],.f input[type=date],.f input[type=number],.f input[type=password],.f select,.f textarea{width:100%;border:2px solid #D5DCC8;border-radius:12px;padding:11px 12px;font-size:15px;background:#FBFCF8;color:var(--ink)}
+.f input:focus,.f select:focus,.f textarea:focus{outline:none;border-color:var(--leaf)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.chk{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:var(--soft);cursor:pointer}
+.chk input{width:18px;height:18px;accent-color:var(--green)}
+.err{color:#B3261E;font-size:13px;font-weight:700;min-height:18px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:6px}
+.btn{background:var(--green);color:#fff;border:0;border-radius:12px;padding:12px 20px;font-weight:900;font-size:15px;cursor:pointer}
+.btn:disabled{opacity:.6;cursor:wait}
+.ghost{background:transparent;border:2px solid var(--line);color:var(--soft);border-radius:12px;padding:10px 16px;font-weight:800;cursor:pointer}
+.pill{display:inline-block;font-size:12px;font-weight:900;padding:5px 12px;border-radius:999px;margin-bottom:8px}
+.meta{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0}
+.meta div{background:var(--cream);border-radius:12px;padding:9px 11px;font-size:13px}
+.meta b{display:block;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.3px}
+.flame{background:#FFF4D6;border:2px solid var(--gold);color:#5A3D00;border-radius:999px;padding:11px 18px;font-weight:900;font-size:15px;cursor:pointer}
+.flame:disabled{opacity:.7;cursor:default}
+#toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(120px);background:var(--green);color:#fff;padding:14px 22px;border-radius:999px;font-weight:800;z-index:60;transition:transform .3s;max-width:90vw;text-align:center}
+#toast.on{transform:translateX(-50%) translateY(0)}
+.confetti{position:fixed;top:-12px;width:10px;height:14px;z-index:70;pointer-events:none;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(105vh) rotate(720deg)}}
+.notice{text-align:center;padding:60px 20px;font-size:18px;font-weight:800;color:var(--green)}
+.notice small{display:block;font-size:14px;color:var(--soft);font-weight:600;margin-top:8px}
+.lead{margin-top:20px}
+.gate{max-width:420px;margin:40px auto;text-align:center}
+.gate .e{font-size:54px}
+.lgrid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:20px}
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 14px}
+.fchip{font-size:13px;font-weight:800;padding:7px 13px;border-radius:999px;border:2px solid var(--line);background:#fff;color:var(--soft);cursor:pointer}
+.fchip.on{background:var(--green);border-color:var(--green);color:#fff}
+.li{border:2px solid var(--line);border-radius:16px;padding:14px;margin-bottom:12px;border-left-width:8px}
+.li h4{font-size:17px;font-weight:900}
+.li .who{font-size:12px;color:var(--muted);font-weight:700;margin:2px 0 6px}
+.li .det{font-size:14px;color:var(--soft);margin-bottom:10px}
+.li .f{margin-bottom:8px}
+.li .f input,.li .f select,.li .f textarea{padding:8px 10px;font-size:14px}
+.three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.gm{border:2px solid var(--line);border-radius:16px;padding:14px;margin-bottom:12px}
+.gm h4{font-size:17px;font-weight:900;margin-bottom:8px}
+.gm .cur{display:flex;gap:8px;align-items:center;margin-bottom:10px}
+.gm .cur input{width:110px;border:2px solid #D5DCC8;border-radius:10px;padding:8px;font-size:15px}
+.gm label.m{display:flex;gap:9px;align-items:flex-start;font-size:14px;padding:6px 0;border-bottom:1px dashed #EFEBDD;cursor:pointer}
+.gm label.m input{width:18px;height:18px;accent-color:var(--leaf);margin-top:2px}
+.gm label.m small{color:var(--muted);font-weight:700}
+.foot{text-align:center;color:#8A856F;font-size:12px;margin:18px 0 6px}
+@media (max-width:1050px){.grid,.lgrid{grid-template-columns:1fr}}
+@media (max-width:560px){
+ .page{padding:12px}.top{padding:16px}.top h1{font-size:23px}.pour{width:100%}.topbtns{width:100%}.lock{width:100%}
+ .jrow{grid-template-columns:96px minmax(0,1fr)}.segbox{width:96px}.station{left:16px;width:64px;height:64px;font-size:24px;top:12px}
+ .jcard{padding:13px 14px}.jt b{font-size:17px}.big{font-size:24px}.two,.three,.meta{grid-template-columns:1fr}.lane{grid-template-columns:82px 1fr 38px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+ <header class="top">
+  <div><h1>💡 The Rose of Sharon Think Tank</h1><p>When We Care… They Care. Every idea counts, from every department.</p></div>
+  <div class="topbtns"><button class="lock" id="leadBtn">🔒 Leadership</button><button class="pour" id="pourBtn">＋ Pour in an idea</button></div>
+ </header>
+
+ <div id="home">
+  <div class="grid">
+   <section class="panel">
+    <div class="ph"><h2>The Think Tank</h2><span>Ideas rise as they grow · tap a bubble</span></div>
+    <svg id="tank" viewBox="0 0 640 870" role="img" aria-label="Think tank of ideas"></svg>
+    <div class="legend"><span><i style="background:#F0B92E"></i>Spark</span><span><i style="background:#7FD1B0"></i>Brewing</span><span><i style="background:#8DBDEB"></i>In Motion</span><span><i style="background:#FFF4D6;border:2px solid #E8B83A"></i>Made Real</span></div>
+    <div id="spot"></div>
+   </section>
+   <section class="panel">
+    <div class="ph"><h2>2027 Goal Journey</h2><span>Top to bottom, January to December · tap a goal</span></div>
+    <div id="road"></div>
+   </section>
+  </div>
+ </div>
+
+ <div id="leadView" class="lead" hidden></div>
+ <div class="foot" id="foot">Rose of Sharon Senior Villa · The Think Tank</div>
+</div>
+
+<div class="modal" id="pourModal" hidden>
+ <div class="mbox">
+  <h3>💡 Pour in an idea</h3>
+  <div class="sub">Big or small, every idea helps us care better. It lands in the tank as a Spark.</div>
+  <div class="f"><label for="pTitle">Your idea</label><input type="text" id="pTitle" maxlength="140" placeholder="Movie night every Friday with popcorn"></div>
+  <div class="f"><label for="pDetails">Tell us more (optional)</label><textarea id="pDetails" rows="3" maxlength="1500" placeholder="Who it helps, what it needs, why it matters"></textarea></div>
+  <div class="two">
+   <div class="f"><label for="pDept">Department</label><select id="pDept"></select></div>
+   <div class="f"><label for="pGoal">Helps which 2027 goal?</label><select id="pGoal"></select></div>
+  </div>
+  <div class="f" id="nameWrap"><label for="pName">Your name</label><input type="text" id="pName" maxlength="60" placeholder="First and last name"></div>
+  <label class="chk"><input type="checkbox" id="pAnon"> Submit anonymously</label>
+  <div class="err" id="pErr"></div>
+  <div class="row"><button class="ghost" data-close>Not now</button><button class="btn" id="pSend">Drop it in the Tank ➜</button></div>
+ </div>
+</div>
+
+<div class="modal" id="ideaModal" hidden><div class="mbox" id="ideaBox"></div></div>
+<div id="toast"></div>
+
+<script>
+const API = "https://script.google.com/macros/s/AKfycbySfnFtAKppz5hSrBeGs9avM_CvNhmPYMLLOnOJGsAOqpOT3JVoSfnZfjOUllMLZZPd/exec";
+
+const STAGE = {
+ 'Spark':{grad:'gold',stroke:'#B9860F',ink:'#4A3300',bg:'#FFE9B3',fg:'#6B4A00',label:'✨ Spark'},
+ 'Brewing':{grad:'teal',stroke:'#1D8A64',ink:'#08402F',bg:'#D3EFE4',fg:'#0B5340',label:'☕ Brewing'},
+ 'In Motion':{grad:'blue',stroke:'#2E6FB5',ink:'#0C3A66',bg:'#D6E6F7',fg:'#0C447C',label:'🚀 In Motion'},
+ 'Made Real':{grad:'cream',stroke:'#E8B83A',ink:'#5A3D00',bg:'#D9EEC4',fg:'#27500A',label:'✅ Made Real'},
+ 'Parking Lot':{grad:'cream',stroke:'#B4B2A9',ink:'#444441',bg:'#E9E6DA',fg:'#5F5E5A',label:'🅿️ Parking Lot'}
+};
+let D = null, LD = null, PIN = '', newId = '', leadFilter = 'All';
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pd = s => { const p = String(s || '').split('-'); return p.length === 3 ? new Date(+p[0], p[1] - 1, +p[2]) : null; };
+const fmt = (s, o) => { const d = pd(s); return d ? d.toLocaleDateString('en-US', o || {month:'short', day:'numeric'}) : ''; };
+const days = (a, b) => Math.round((pd(b) - pd(a)) / 86400000);
+const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
+const deptColor = n => { const d = (D && D.departments || []).find(x => x.name === n); return d ? d.color : '#2F5D1E'; };
+const tint = (hex, a) => { const h = hex.replace('#',''); const r = parseInt(h.substr(0,2),16), g = parseInt(h.substr(2,2),16), b = parseInt(h.substr(4,2),16); return `rgba(${r},${g},${b},${a})`; };
+const chip = n => `<span class="chip" style="background:${tint(deptColor(n),.14)};color:${deptColor(n)}">${esc(n)}</span>`;
+
+async function getData() { const r = await fetch(API + '?action=data', {cache:'no-store'}); return r.json(); }
+async function post(o) { const r = await fetch(API, {method:'POST', body: JSON.stringify(o)}); return r.json(); }
+
+function toast(msg) { const t = $('toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove('on'), 3200); }
+
+function confetti(n) {
+ const cols = ['#E8B83A','#5C9A2E','#2F5D1E','#F3D98B','#7FD1B0','#8DBDEB','#D85A30'];
+ for (let i = 0; i < (n || 90); i++) {
+  const c = document.createElement('div'); c.className = 'confetti';
+  c.style.left = Math.random() * 100 + 'vw'; c.style.background = cols[i % cols.length];
+  c.style.animationDuration = (2.2 + Math.random() * 2) + 's'; c.style.animationDelay = Math.random() * .6 + 's';
+  c.style.borderRadius = Math.random() > .5 ? '50%' : '2px';
+  document.body.appendChild(c); setTimeout(() => c.remove(), 5000);
+ }
+}
+
+function wrap(text, max, lines) {
+ const words = String(text).split(/\s+/); const out = []; let cur = '';
+ words.forEach(w => {
+  if (w.length > max) w = w.slice(0, max - 1) + '…';
+  if ((cur + ' ' + w).trim().length <= max) cur = (cur + ' ' + w).trim(); else { out.push(cur); cur = w; }
+ });
+ if (cur) out.push(cur);
+ if (out.length > lines) { out.length = lines; out[lines - 1] = out[lines - 1].replace(/.{0,1}$/, '…'); }
+ return out.filter(Boolean);
+}
+
+function bubbleSvg(i, x, y, r, delay) {
+ const s = STAGE[i.stage] || STAGE.Spark;
+ const fs = 13;
+ const made = i.stage === 'Made Real';
+ const lines = wrap(i.title + (made ? ' ✓' : ''), Math.floor(r * 1.7 / (fs * .55)), 3);
+ const metaMax = Math.floor(r * 1.5 / 5.6);
+ const meta = made ? '' : (i.dept.length > metaMax ? i.dept.slice(0, metaMax - 1) + '…' : i.dept);
+ const lh = fs + 2; const total = lines.length * lh + (meta ? 14 : 0); let ty = y - total / 2 + fs - 2;
+ let t = lines.map(l => { const o = `<text x="${x}" y="${ty}" text-anchor="middle" font-size="${fs}" font-weight="800" fill="${s.ink}">${esc(l)}</text>`; ty += lh; return o; }).join('');
+ if (meta) t += `<text x="${x}" y="${ty + 1}" text-anchor="middle" font-size="10.5" font-weight="700" fill="${s.ink}">${esc(meta)}</text>`;
+ if (i.flames > 0 && !made) { const bx = x + r * .72, by = y - r * .72; t += `<g><rect x="${bx - 19}" y="${by - 11}" width="38" height="22" rx="11" fill="#fff" stroke="${s.stroke}" stroke-width="2"/><text x="${bx}" y="${by + 4.5}" text-anchor="middle" font-size="11.5" font-weight="900" fill="${s.ink}">🔥${i.flames}</text></g>`; }
+ const fill = i.stage === 'Made Real' ? '#FFF4D6' : `url(#${s.grad})`;
+ return `<g class="bub${i.id === newId ? ' new' : ''}" style="animation-delay:${i.id === newId ? 0 : delay}s" onclick="openIdea('${esc(i.id)}')"><circle class="b" cx="${x}" cy="${y}" r="${r}" fill="${fill}" stroke="${s.stroke}" stroke-width="${i.stage === 'Made Real' ? 4 : 3}"/>${t}</g>`;
+}
+
+function moreSvg(stage, n, x, y) {
+ return `<g class="bub" onclick="openStage('${stage}')"><circle cx="${x}" cy="${y}" r="38" fill="rgba(255,255,255,.75)" stroke="#fff" stroke-width="3"/><text x="${x}" y="${y + 2}" text-anchor="middle" font-size="18" font-weight="900" fill="#2F5D1E">+${n}</text><text x="${x}" y="${y + 18}" text-anchor="middle" font-size="10" font-weight="700" fill="#2F5D1E">more</text></g>`;
+}
+
+function drawTank() {
+ const ideas = D.ideas.filter(i => i.stage !== 'Parking Lot');
+ const of = s => ideas.filter(i => i.stage === s).sort((a, b) => b.flames - a.flames || (a.submitted < b.submitted ? 1 : -1));
+ const lvl = clamp(ideas.length / (D.capacity || 50), 0, 1);
+ let h = `<defs>
+  <linearGradient id="water" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#BFE6D3"/><stop offset="1" stop-color="#3E8E6B"/></linearGradient>
+  <linearGradient id="glass" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".15" stop-color="#fff" stop-opacity="0"/></linearGradient>
+  <radialGradient id="gold" cx=".35" cy=".3"><stop offset="0" stop-color="#FFF6D2"/><stop offset="1" stop-color="#F0B92E"/></radialGradient>
+  <radialGradient id="teal" cx=".35" cy=".3"><stop offset="0" stop-color="#F2FFF9"/><stop offset="1" stop-color="#7FD1B0"/></radialGradient>
+  <radialGradient id="blue" cx=".35" cy=".3"><stop offset="0" stop-color="#F3F8FF"/><stop offset="1" stop-color="#8DBDEB"/></radialGradient>
+  <radialGradient id="cream" cx=".35" cy=".3"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#FFF4D6"/></radialGradient>
+  <radialGradient id="mini" cx=".35" cy=".3"><stop offset="0" stop-color="#fff" stop-opacity=".95"/><stop offset="1" stop-color="#fff" stop-opacity=".25"/></radialGradient>
+  <clipPath id="inside"><rect x="97" y="125" width="466" height="676" rx="28"/></clipPath>
+ </defs>
+ <g style="cursor:pointer" onclick="openPour()">
+  <path d="M235 20 H405 L345 92 V118 H295 V92 Z" fill="#E8B83A" stroke="#8A5A00" stroke-width="3"/>
+  <text x="320" y="56" text-anchor="middle" font-size="15" font-weight="900" fill="#4A3300">DROP IDEAS IN</text>
+  <g class="drop"><circle cx="455" cy="62" r="20" fill="url(#gold)" stroke="#B9860F" stroke-width="2"/><text x="455" y="69" text-anchor="middle" font-size="20">💡</text></g>
+ </g>
+ <rect x="90" y="118" width="480" height="690" rx="34" fill="#F2FAF6" stroke="#2F5D1E" stroke-width="7"/>
+ <g clip-path="url(#inside)">
+  <path class="wave" d="M40 238 Q95 222 150 238 T260 238 T370 238 T480 238 T590 238 T700 238 V810 H40 Z" fill="url(#water)"/>`;
+ for (let k = 0; k < 14; k++) {
+  const x = 115 + Math.random() * 420, r = 4 + Math.random() * 9, d = 5 + Math.random() * 7;
+  h += `<circle class="rise" style="animation-duration:${d}s;animation-delay:${-Math.random() * d}s" cx="${x}" cy="${790 - Math.random() * 40}" r="${r}" fill="url(#mini)" stroke="#fff" stroke-width="1.2"/>`;
+ }
+ h += `</g><rect x="97" y="125" width="466" height="676" rx="28" fill="url(#glass)" pointer-events="none"/>
+ <g font-size="12" font-weight="900" fill="#2F5D1E" text-anchor="end">
+  <text x="82" y="182">MADE</text><text x="82" y="196">REAL ✨</text>
+  <text x="82" y="335">IN</text><text x="82" y="349">MOTION</text>
+  <text x="82" y="520">BREWING</text><text x="82" y="705">SPARK</text>
+ </g>
+ <g stroke="#2F5D1E" stroke-width="2" opacity=".3"><line x1="76" y1="252" x2="90" y2="252"/><line x1="76" y1="425" x2="90" y2="425"/><line x1="76" y1="605" x2="90" y2="605"/></g>`;
+
+ const made = of('Made Real').sort((a, b) => (a.madeRealOn < b.madeRealOn ? 1 : -1));
+ const mx = [175, 285, 395, 500];
+ const mShow = made.length > 4 ? made.slice(0, 3) : made;
+ mShow.forEach((i, k) => h += bubbleSvg(i, mx[k], 184, 46, k * .4));
+ if (made.length > 4) h += moreSvg('Made Real', made.length - 3, mx[3], 184);
+ if (made.length) h += `<text class="twinkle" x="${mx[Math.min(mShow.length, 3) - 1] + 30}" y="148" font-size="18">✨</text><text class="twinkle" style="animation-delay:1.1s" x="150" y="150" font-size="16">⭐</text>`;
+
+ const zones = [['In Motion', 307, 384], ['Brewing', 482, 558], ['Spark', 662, 740]];
+ const slots = (y1, y2) => [[176, y1], [316, y1], [456, y1], [246, y2], [386, y2]];
+ zones.forEach(([st, y1, y2]) => {
+  const list = of(st); const sl = slots(y1, y2);
+  const show = list.length > 5 ? list.slice(0, 4) : list;
+  show.forEach((i, k) => h += bubbleSvg(i, sl[k][0], sl[k][1], clamp(48 + i.flames / 3, 48, 52), (k * .7) % 3));
+  if (list.length > 5) h += moreSvg(st, list.length - 4, sl[4][0], sl[4][1]);
+ });
+ if (!ideas.length) h += `<text x="330" y="500" text-anchor="middle" font-size="20" font-weight="900" fill="#fff">The tank is waiting</text><text x="330" y="528" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">for its very first idea 💡</text>`;
+
+ const gh = Math.round(392 * lvl);
+ h += `<rect x="545" y="300" width="70" height="420" rx="35" fill="#fff" stroke="#2F5D1E" stroke-width="3"/>
+ <rect x="553" y="${712 - Math.max(gh, 54)}" width="54" height="${Math.max(gh, 54)}" rx="27" fill="#E8B83A"/>
+ <text x="580" y="378" text-anchor="middle" font-size="28" font-weight="900" fill="#2F5D1E">${ideas.length}</text>
+ <text x="580" y="396" text-anchor="middle" font-size="11" font-weight="800" fill="#2F5D1E">ideas</text>
+ <rect x="70" y="808" width="520" height="22" rx="8" fill="#2F5D1E"/>
+ <rect x="110" y="830" width="24" height="34" fill="#2F5D1E"/><rect x="526" y="830" width="24" height="34" fill="#2F5D1E"/>`;
+ $('tank').innerHTML = h;
+
+ const sp = D.ideas.find(i => i.spotlight) || made[0];
+ const madeCount = made.filter(i => (i.madeRealOn || '').slice(0, 4) === (D.today || '').slice(0, 4)).length;
+ $('spot').innerHTML = sp ? `<div class="spot" onclick="openIdea('${esc(sp.id)}')"><div><div class="k">🏆 ${sp.spotlight ? 'Idea of the Month' : 'Latest idea made real'}</div><div class="t">${esc(sp.title)}</div><div class="m">${esc(sp.dept)} · ${esc(sp.by)}${sp.spotlight && D.points ? ` · earned +${D.points} reward points` : ''}</div><div class="m" style="font-size:12px;margin-top:3px">${madeCount} idea${madeCount === 1 ? '' : 's'} made real this year</div></div><div class="e">🎉</div></div>`
+  : `<div class="spot" onclick="openPour()"><div><div class="k">🏆 Idea of the Month</div><div class="t">Could be yours</div><div class="m">Pour in an idea and help it rise to the top</div></div><div class="e">🎉</div></div>`;
+}
+
+function seg(dir, frac, isLast) {
+ if (isLast) return '';
+ const c = dir ? 95 : 5;
+ const L = (a, b, t) => [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t];
+ const P0 = [50, 0], P1 = [c, 30], P2 = [c, 70], P3 = [50, 100];
+ const full = `M50 0 C${c} 30 ${c} 70 50 100`;
+ let done = '', here = '';
+ if (frac > 0) {
+  const t = clamp(frac, 0, 1);
+  const Q1 = L(P0, P1, t), M = L(P1, P2, t), R1 = L(P2, P3, t), Q2 = L(Q1, M, t), R2 = L(M, R1, t), Q3 = L(Q2, R2, t);
+  done = `<path d="M50 0 C${Q1[0]} ${Q1[1]} ${Q2[0]} ${Q2[1]} ${Q3[0]} ${Q3[1]}" fill="none" stroke="#5C9A2E" stroke-width="26" stroke-linecap="round" vector-effect="non-scaling-stroke"/>`;
+  if (t < 1) here = `<div class="here" style="left:${Q3[0]}%;top:${Q3[1]}%" title="You are here"></div>`;
+ }
+ return `<div class="segbox"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><path d="${full}" fill="none" stroke="#E4E0CF" stroke-width="26" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path d="${full}" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="12 12" vector-effect="non-scaling-stroke"/>${done}</svg>${here}</div>`;
+}
+
+function ring(pct, color) {
+ const C = 2 * Math.PI * 38;
+ return `<svg viewBox="0 0 88 88"><circle cx="44" cy="44" r="38" fill="none" stroke="#E9EDE1" stroke-width="10"/><circle cx="44" cy="44" r="38" fill="none" stroke="${color}" stroke-width="10" stroke-linecap="round" stroke-dasharray="${C * pct / 100} ${C}" transform="rotate(-90 44 44)"/></svg>`;
+}
+
+function goalTone(g) {
+ const today = D.today, kick = D.kickoff;
+ if (g.pct >= 100) return {c:'#E8B83A', ink:'#B37D0E', msg:'Goal reached! 🎉'};
+ if (today < kick) {
+  const left = Math.max(0, g.target - g.current);
+  return {c:'#5C9A2E', ink:'#2F5D1E', msg: g.track === 'Steps' ? `Starts Jan 1 · ${g.target} steps on the map` : `Starts Jan 1 · ${left}${g.unit === '%' ? '%' : ' ' + g.unit} to go`};
+ }
+ const span = Math.max(1, days(kick, g.due)); const exp = clamp(days(kick, today) / span, 0, 1) * 100;
+ const left = Math.max(0, g.target - g.current);
+ const tail = g.track === 'Steps' ? `${left} step${left === 1 ? '' : 's'} to go` : (g.unit === '%' ? `${left}% to go` : `${left} ${g.unit} to go`);
+ if (today > g.due) return {c:'#D85A30', ink:'#C24A22', msg:`Past due · ${tail}`};
+ if (g.pct >= exp - 10) return {c:'#5C9A2E', ink:'#2F5D1E', msg:`On pace ✓ ${tail}`};
+ if (g.pct >= exp - 30) return {c:'#E0A21E', ink:'#B37D0E', msg:`Needs a push · ${tail}`};
+ return {c:'#D85A30', ink:'#C24A22', msg:`Behind · rally the team · ${tail}`};
+}
+
+function quarter(s) { const d = pd(s); return d ? 'Q' + (Math.floor(d.getMonth() / 3) + 1) : ''; }
+
+function goalCard(g, isNext, isFinish) {
+ const t = goalTone(g);
+ const big = g.unit === '%' ? `${g.current}%` : `${g.current}<small>/${g.target}${g.track === 'Steps' ? ' steps' : ''}</small>`;
+ let body = `<div class="bar"><i style="width:${g.pct}%;background:${t.c}"></i></div>`;
+ if (g.track === 'Steps') {
+  const nxt = g.milestones.find(m => !m.done);
+  body = `<div class="dots">${g.milestones.map(m => `<i class="${m.done ? 'on' : ''}" title="${esc(m.text)}"></i>`).join('')}${nxt ? `<span>Next: ${esc(nxt.text)}</span>` : '<span>Every step done ✓</span>'}</div>`;
+ } else if (g.target && g.target <= 15 && g.unit !== '%') {
+  body += `<div class="icons">${Array.from({length: g.target}, (_, k) => `<span class="${k < g.current ? '' : 'off'}">${g.icon}</span>`).join('')}</div>`;
+ }
+ const lanes = g.lanes.map(l => `<div class="lane"><span>${esc(l.dept)}</span><div class="bar"><i style="width:${l.pct}%;background:${l.pct >= 60 ? '#5C9A2E' : l.pct >= 30 ? '#E0A21E' : '#D85A30'}"></i></div><b>${l.pct}%</b></div>`).join('');
+ const ms = g.milestones.map(m => `<div class="ms ${m.done ? 'done' : ''}"><span>${m.done ? '✅' : '⬜'}</span><span>${esc(m.text)} <small style="color:#7A7560">· ${esc(m.dept)}${m.due ? ' · ' + fmt(m.due) : ''}</small></span></div>`).join('');
+ const cls = g.pct >= 100 ? 'won' : isFinish ? 'fin' : isNext ? 'next' : '';
+ return `<div class="jcard ${cls}" onclick="this.classList.toggle('open')">
+  <div class="jq">${quarter(g.due)} · Due ${fmt(g.due, {month:'long', day:'numeric'})}${isFinish ? ' · Finish line' : ''}</div>
+  <div class="jt"><b>${g.icon} ${esc(g.name)}</b><span class="big" style="color:${t.ink}">${big}</span></div>
+  ${body}
+  <div class="chips">${g.lanes.map(l => chip(l.dept)).join('')}</div>
+  <div class="status" style="color:${t.ink}">${esc(t.msg)}${g.mustHit !== '' && g.mustHit != null ? ` · must hit ${g.mustHit}` : ''}${g.ideaCount ? ` · 💡 ${g.ideaCount} idea${g.ideaCount === 1 ? '' : 's'} feeding this goal` : ''}</div>
+  <div class="more">${lanes ? `<div style="font-weight:900;margin-bottom:8px;color:#2F5D1E">How each department is pushing</div>${lanes}` : ''}${ms ? `<div style="font-weight:900;margin:12px 0 4px;color:#2F5D1E">The plan</div>${ms}` : ''}${g.notes ? `<div style="font-size:13px;color:#5E6B52;margin-top:8px">${esc(g.notes)}</div>` : ''}</div>
+  <div class="toggle">${isFinish ? 'Confetti when we cross the line 🎉 · ' : ''}Tap to see the plan ▾</div>
+ </div>`;
+}
+
+function drawRoad() {
+ const goals = D.goals.slice();
+ const today = D.today, kick = D.kickoff;
+ const year = kick.slice(0, 4);
+ const last = goals[goals.length - 1];
+ const finishIsGoal = last && last.due.slice(5) === '12-31';
+ const rows = [{type:'kick', date:kick}].concat(goals.map((g, k) => ({type:'goal', g, date:g.due, finish: finishIsGoal && k === goals.length - 1})));
+ if (!finishIsGoal) rows.push({type:'end', date: year + '-12-31'});
+ const nextGoal = goals.find(g => g.pct < 100 && g.due >= today);
+ let h = '';
+ rows.forEach((r, idx) => {
+  const nx = rows[idx + 1];
+  let frac = 0;
+  if (nx) { if (today >= nx.date) frac = 1; else if (today > r.date) frac = days(r.date, today) / Math.max(1, days(r.date, nx.date)); }
+  const road = seg(idx % 2 === 0, frac, !nx);
+  let st = '', card = '';
+  if (r.type === 'kick') {
+   const pre = today < kick;
+   const dn = days(today, kick); const dIn = days(kick, today) + 1;
+   st = `<div class="station kick ${pre ? 'pulse' : ''}"><span>🚩</span></div>`;
+   card = `<div class="jcard kick"><div class="jt" style="margin:0"><b style="color:#2F5D1E">Kickoff · ${fmt(kick, {month:'short', day:'numeric', year:'numeric'})}</b></div><div style="font-size:14px;color:#3B6D11;font-weight:700">${pre ? `You are here: ${fmt(today, {month:'short', year:'numeric'})} · ${dn} day${dn === 1 ? '' : 's'} to go` : `Day ${dIn} of ${year} · ${goals.filter(g => g.pct >= 100).length} of ${goals.length} goals reached`}</div></div>`;
+  } else if (r.type === 'goal') {
+   const g = r.g; const t = goalTone(g);
+   st = r.finish ? `<div class="station fin"><span>🏆</span></div>` : `<div class="station">${ring(g.pct, t.c)}<span>${g.icon}</span></div>`;
+   card = goalCard(g, nextGoal && nextGoal.id === g.id, r.finish);
+  } else {
+   const won = goals.filter(g => g.pct >= 100).length;
+   st = `<div class="station fin"><span>🏆</span></div>`;
+   card = `<div class="jcard fin nogoal"><div class="jq">Finish line · Dec 31, ${year}</div><div class="jt"><b>🎉 Celebrate ${year}</b><span class="big" style="color:#B37D0E">${won}<small>/${goals.length} goals</small></span></div><div style="font-size:13px;color:#8A5A00;font-weight:800">Confetti when we cross the line 🎉</div></div>`;
+  }
+  h += `<div class="jrow"><div class="jroad">${road}${st}</div>${card}</div>`;
+ });
+ $('road').innerHTML = h;
+}
+
+function fillSelects() {
+ $('pDept').innerHTML = D.departments.map(d => `<option>${esc(d.name)}</option>`).join('');
+ $('pGoal').innerHTML = D.goals.map(g => `<option value="${esc(g.name)}">${esc(g.icon + ' ' + g.name)}</option>`).join('') + '<option value="Not sure yet">🤔 Not sure yet</option><option value="Something new">🌱 Something new</option>';
+}
+
+function openPour() {
+ if (!D) return;
+ $('pErr').textContent = ''; $('pourModal').hidden = false; setTimeout(() => $('pTitle').focus(), 50);
+}
+
+async function sendIdea() {
+ const title = $('pTitle').value.trim();
+ if (!title) { $('pErr').textContent = 'Write your idea first.'; $('pTitle').focus(); return; }
+ const anon = $('pAnon').checked;
+ if (!anon && !$('pName').value.trim()) { $('pErr').textContent = 'Add your name, or check Submit anonymously.'; $('pName').focus(); return; }
+ const btn = $('pSend'); btn.disabled = true; btn.textContent = 'Pouring…';
+ try {
+  const res = await post({action:'submitIdea', title, details:$('pDetails').value.trim(), dept:$('pDept').value, goal:$('pGoal').value, name:anon ? '' : $('pName').value.trim(), anonymous:anon});
+  if (!res.ok) throw new Error(res.error || 'Something went wrong');
+  $('pourModal').hidden = true; $('pTitle').value = ''; $('pDetails').value = '';
+  newId = res.id; await load(); toast('Plop! Your idea is in the tank 💡'); confetti(60);
+  document.querySelector('#tank').scrollIntoView({behavior:'smooth', block:'center'});
+  setTimeout(() => { newId = ''; }, 3000);
+ } catch (e) { $('pErr').textContent = e.message || 'Could not send. Try again.'; }
+ btn.disabled = false; btn.textContent = 'Drop it in the Tank ➜';
+}
+
+function flamed() { try { return JSON.parse(localStorage.getItem('tt_flames') || '[]'); } catch (e) { return []; } }
+
+function openIdea(id) {
+ const i = D.ideas.find(x => x.id === id); if (!i) return;
+ const s = STAGE[i.stage] || STAGE.Spark; const done = flamed().indexOf(id) > -1;
+ $('ideaBox').innerHTML = `<span class="pill" style="background:${s.bg};color:${s.fg}">${s.label}</span>
+  <h3>${esc(i.title)}</h3>${i.details ? `<div class="sub" style="white-space:pre-wrap">${esc(i.details)}</div>` : ''}
+  <div class="chips" style="margin:0">${chip(i.dept)}</div>
+  <div class="meta"><div><b>Shared by</b>${esc(i.by)}</div><div><b>Dropped in</b>${fmt(i.submitted, {month:'short', day:'numeric', year:'numeric'}) || '—'}</div>
+  <div><b>Helps goal</b>${esc(i.goal || 'Not sure yet')}</div><div><b>Owner</b>${esc(i.owner || 'Waiting for an owner')}</div>
+  ${i.followUp ? `<div><b>Follow up</b>${fmt(i.followUp)}</div>` : ''}${i.due ? `<div><b>Due</b>${fmt(i.due)}</div>` : ''}${i.madeRealOn ? `<div><b>Made real</b>${fmt(i.madeRealOn, {month:'short', day:'numeric', year:'numeric'})}</div>` : ''}</div>
+  <div class="row"><button class="ghost" data-close>Close</button><button class="flame" id="flameBtn" ${done ? 'disabled' : ''} onclick="fan('${esc(i.id)}')">${done ? `You fanned this 🔥 ${i.flames}` : `🔥 Fan the flame · ${i.flames}`}</button></div>`;
+ $('ideaModal').hidden = false;
+}
+
+function openStage(stage) {
+ const list = D.ideas.filter(i => i.stage === stage).sort((a, b) => b.flames - a.flames);
+ const s = STAGE[stage];
+ $('ideaBox').innerHTML = `<span class="pill" style="background:${s.bg};color:${s.fg}">${s.label}</span><h3>Everything in ${esc(stage)}</h3><div class="sub">${list.length} ideas · tap one to peek inside</div>
+  ${list.map(i => `<div onclick="openIdea('${esc(i.id)}')" style="cursor:pointer;border:2px solid var(--line);border-radius:14px;padding:10px 12px;margin-bottom:8px"><b>${esc(i.title)}</b><div style="font-size:12px;color:var(--muted);font-weight:700">${esc(i.dept)} · ${esc(i.by)} · 🔥 ${i.flames}</div></div>`).join('')}
+  <div class="row"><span></span><button class="ghost" data-close>Close</button></div>`;
+ $('ideaModal').hidden = false;
+}
+
+async function fan(id) {
+ const b = $('flameBtn'); b.disabled = true;
+ try {
+  const res = await post({action:'flame', id});
+  if (!res.ok) throw new Error();
+  const f = flamed(); f.push(id); localStorage.setItem('tt_flames', JSON.stringify(f));
+  const i = D.ideas.find(x => x.id === id); i.flames = res.flames;
+  b.textContent = `You fanned this 🔥 ${res.flames}`; drawTank(); toast('🔥 You fanned the flame!');
+ } catch (e) { b.disabled = false; toast('Could not reach the tank. Try again.'); }
+}
+
+async function load() {
+ const res = await getData();
+ if (!res.ok) throw new Error(res.error || 'Could not load');
+ D = res; drawTank(); drawRoad(); fillSelects();
+ $('foot').textContent = `${D.facility} · The Think Tank · updated ${new Date().toLocaleTimeString('en-US', {hour:'numeric', minute:'2-digit'})}`;
+}
+
+function showLead(on) {
+ $('home').hidden = on; $('leadView').hidden = !on;
+ $('leadBtn').textContent = on ? '🫧 Back to the Tank' : '🔒 Leadership';
+ if (on) { if (LD) drawLead(); else drawGate(); }
+ history.replaceState(null, '', on ? '#lead' : location.pathname + location.search);
+ window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function drawGate(msg) {
+ $('leadView').innerHTML = `<div class="panel gate"><div class="e">🔐</div><h2 style="color:#2F5D1E;font-weight:900;margin:6px 0">Leadership Room</h2><div class="sub" style="color:#5E6B52;margin-bottom:14px">Move ideas through the tank, assign owners, and update the 2027 journey.</div>
+  <div class="f"><input type="password" id="pin" inputmode="numeric" placeholder="Leadership PIN" style="text-align:center;font-size:20px;letter-spacing:6px"></div><div class="err" id="pinErr">${esc(msg || '')}</div><button class="btn" id="pinGo" style="width:100%">Open the Leadership Room</button></div>`;
+ $('pin').focus();
+ $('pin').onkeydown = e => { if (e.key === 'Enter') login(); };
+ $('pin').oninput = () => { $('pinErr').textContent = ''; };
+ $('pinGo').onclick = login;
+}
+
+async function login() {
+ const pin = $('pin').value.trim();
+ if (!pin) { $('pinErr').textContent = 'Enter the PIN first.'; return; }
+ $('pinGo').disabled = true; $('pinGo').textContent = 'Checking…';
+ try {
+  const res = await post({action:'leaderData', pin});
+  if (!res.ok) { drawGate(res.error || 'That PIN did not match.'); return; }
+  PIN = pin; try { sessionStorage.setItem('tt_pin', pin); } catch (e) {}
+  LD = res; drawLead();
+ } catch (e) { drawGate('Could not reach the tank. Try again.'); }
+}
+
+async function reloadLead() {
+ const res = await post({action:'leaderData', pin:PIN});
+ if (res.ok) { LD = res; drawLead(); }
+ load().catch(() => {});
+}
+
+function drawLead() {
+ const counts = {}; LD.stages.forEach(s => counts[s] = LD.ideas.filter(i => i.stage === s).length);
+ const list = LD.ideas.filter(i => leadFilter === 'All' || i.stage === leadFilter).sort((a, b) => LD.stages.indexOf(a.stage) - LD.stages.indexOf(b.stage) || (a.submitted < b.submitted ? 1 : -1));
+ const opt = (arr, v) => arr.map(x => `<option ${x === v ? 'selected' : ''}>${esc(x)}</option>`).join('');
+ const ideasHtml = list.length ? list.map(i => {
+  const s = STAGE[i.stage];
+  return `<div class="li" style="border-left-color:${s.stroke}" id="li-${esc(i.id)}">
+   <span class="pill" style="background:${s.bg};color:${s.fg}">${s.label}</span>
+   <h4>${esc(i.title)}</h4><div class="who">${esc(i.id)} · ${esc(i.dept)} · from ${esc(i.byFull || i.by)} · ${fmt(i.submitted, {month:'short', day:'numeric', year:'numeric'})} · 🔥 ${i.flames}${i.goal ? ' · helps ' + esc(i.goal) : ''}</div>
+   ${i.details ? `<div class="det">${esc(i.details)}</div>` : ''}
+   <div class="three"><div class="f"><label>Stage</label><select data-k="stage">${opt(LD.stages, i.stage)}</select></div>
+   <div class="f"><label>Owner</label><input type="text" data-k="owner" value="${esc(i.owner)}" placeholder="Who is carrying it"></div>
+   <div class="f"><label>Owner email</label><input type="email" data-k="ownerEmail" value="${esc(i.ownerEmail)}" placeholder="for reminders"></div></div>
+   <div class="three"><div class="f"><label>Follow up</label><input type="date" data-k="followUp" value="${esc(i.followUp)}"></div>
+   <div class="f"><label>Due date</label><input type="date" data-k="due" value="${esc(i.due)}"></div>
+   <div class="f"><label>&nbsp;</label><label class="chk" style="padding-top:8px"><input type="checkbox" data-k="spotlight" ${i.spotlight ? 'checked' : ''}> Idea of the Month</label></div></div>
+   <div class="f"><label>Notes</label><textarea data-k="notes" rows="2" placeholder="What happened, what is next">${esc(i.notes)}</textarea></div>
+   <div class="row"><span class="err" data-err></span><button class="btn" onclick="saveIdea('${esc(i.id)}', this)">Save</button></div></div>`;
+ }).join('') : `<div class="notice" style="padding:30px">Nothing in ${esc(leadFilter)} right now.</div>`;
+
+ const goalsHtml = LD.goals.map(g => `<div class="gm"><h4>${g.icon} ${esc(g.name)} <small style="color:#7A7560;font-weight:700">· due ${fmt(g.due)} · ${g.pct}%</small></h4>
+  ${g.track === 'Count' ? `<div class="cur"><span style="font-weight:800;font-size:14px">Current</span><input type="number" min="0" step="1" id="cur-${esc(g.id)}" value="${g.current}"><span style="font-weight:700;color:#7A7560;font-size:14px">/ ${g.target} ${esc(g.unit)}</span><button class="btn" style="padding:8px 14px" onclick="saveGoal('${esc(g.id)}', this)">Update</button></div>` : ''}
+  ${g.milestones.map(m => `<label class="m"><input type="checkbox" ${m.done ? 'checked' : ''} onchange="toggleMs('${esc(m.id)}', this)"><span>${esc(m.text)}<br><small>${esc(m.dept)}${m.due ? ' · due ' + fmt(m.due) : ''}${m.doneOn ? ' · done ' + fmt(m.doneOn) : ''}</small></span></label>`).join('')}</div>`).join('');
+
+ $('leadView').innerHTML = `<div class="lgrid">
+  <section class="panel"><div class="ph"><h2>💡 Ideas in the tank</h2><span><a href="${esc(LD.sheetUrl)}" target="_blank" style="color:#2F5D1E">Open the Sheet ↗</a></span></div>
+   <div class="filters">${['All'].concat(LD.stages).map(s => `<button class="fchip ${s === leadFilter ? 'on' : ''}" onclick="leadFilter='${s}';drawLead()">${s === 'All' ? 'All' : STAGE[s].label} · ${s === 'All' ? LD.ideas.length : counts[s]}</button>`).join('')}</div>
+   ${ideasHtml}</section>
+  <section class="panel"><div class="ph"><h2>🗺️ 2027 goals</h2><span>Check off steps to move the road</span></div>${goalsHtml}
+   <div style="text-align:center;margin-top:10px"><button class="ghost" onclick="PIN='';LD=null;try{sessionStorage.removeItem('tt_pin')}catch(e){};drawGate()">Lock the Leadership Room</button></div></section></div>`;
+}
+
+async function saveIdea(id, btn) {
+ const box = $('li-' + id); const get = k => box.querySelector(`[data-k="${k}"]`);
+ const err = box.querySelector('[data-err]'); err.textContent = '';
+ const email = get('ownerEmail').value.trim();
+ if (email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { err.textContent = 'Check the owner email.'; return; }
+ btn.disabled = true; btn.textContent = 'Saving…';
+ try {
+  const res = await post({action:'updateIdea', pin:PIN, id, stage:get('stage').value, owner:get('owner').value.trim(), ownerEmail:email, followUp:get('followUp').value, due:get('due').value, notes:get('notes').value, spotlight:get('spotlight').checked});
+  if (!res.ok) throw new Error(res.error);
+  if (res.madeReal) { confetti(120); toast(`🎉 Made real!${D && D.points ? ` Remember the +${D.points} reward points.` : ''}`); } else toast('Saved ✓');
+  await reloadLead();
+ } catch (e) { err.textContent = e.message || 'Could not save.'; btn.disabled = false; btn.textContent = 'Save'; }
+}
+
+async function toggleMs(id, el) {
+ el.disabled = true;
+ try {
+  const res = await post({action:'toggleMilestone', pin:PIN, id, done:el.checked});
+  if (!res.ok) throw new Error(res.error);
+  toast(el.checked ? '✅ Step checked off. The road moves!' : 'Step reopened');
+  const before = LD.goals.filter(g => g.pct >= 100).length;
+  await reloadLead();
+  if (LD.goals.filter(g => g.pct >= 100).length > before) confetti(150);
+ } catch (e) { el.checked = !el.checked; el.disabled = false; toast(e.message || 'Could not save.'); }
+}
+
+async function saveGoal(id, btn) {
+ const v = $('cur-' + id).value;
+ if (v === '' || isNaN(+v) || +v < 0) { toast('Enter a number for the goal.'); return; }
+ btn.disabled = true; btn.textContent = 'Saving…';
+ try {
+  const res = await post({action:'updateGoal', pin:PIN, id, current:+v});
+  if (!res.ok) throw new Error(res.error);
+  const before = LD.goals.filter(g => g.pct >= 100).length;
+  toast('Goal updated ✓'); await reloadLead();
+  if (LD.goals.filter(g => g.pct >= 100).length > before) confetti(150);
+ } catch (e) { toast(e.message || 'Could not save.'); btn.disabled = false; btn.textContent = 'Update'; }
+}
+
+document.addEventListener('click', e => {
+ if (e.target.matches('[data-close]') || e.target.classList.contains('modal')) e.target.closest('.modal').hidden = true;
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') document.querySelectorAll('.modal').forEach(m => m.hidden = true); });
+$('pourBtn').onclick = openPour;
+$('pSend').onclick = sendIdea;
+$('pTitle').oninput = $('pName').oninput = () => { $('pErr').textContent = ''; };
+$('pAnon').onchange = () => { $('nameWrap').style.display = $('pAnon').checked ? 'none' : ''; $('pErr').textContent = ''; };
+$('leadBtn').onclick = () => showLead($('leadView').hidden);
+
+(async function start() {
+ $('tank').innerHTML = '<text x="320" y="420" text-anchor="middle" font-size="22" font-weight="900" fill="#2F5D1E">Filling the tank…</text>';
+ if (!API || API.indexOf('http') !== 0) { $('home').innerHTML = '<div class="panel notice">The Think Tank is almost ready.<small>Add the web app link to this page to connect it to the Google Sheet.</small></div>'; return; }
+ try { await load(); } catch (e) { $('road').innerHTML = '<div class="notice">Could not reach the tank right now.<small>Refresh the page in a moment.</small></div>'; }
+ try { PIN = sessionStorage.getItem('tt_pin') || ''; } catch (e) {}
+ if (location.hash === '#lead') {
+  if (PIN) { const res = await post({action:'leaderData', pin:PIN}).catch(() => ({})); if (res.ok) LD = res; else PIN = ''; }
+  showLead(true);
+ }
+ setInterval(() => { if (!$('home').hidden && $('pourModal').hidden && $('ideaModal').hidden) load().catch(() => {}); }, 120000);
+})();
+</script>
+</body>
+</html>
